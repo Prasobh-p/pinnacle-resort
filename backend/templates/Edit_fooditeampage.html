@@ -1,0 +1,56 @@
+<!doctype html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+  <div class="col-md-6 grid-margin stretch-card" style="margin-left:200px">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Edit room</h4>
+        <form class="forms-sample" method="POST" action="{% url 'update_foodpage'  Bid=foiteam.id %}" enctype="multipart/form-data">
+          {% csrf_token %}
+           <div class="form-group">
+             <label for="foodtype">type</label>
+             <select class="form-select" id="foodtype" name="foodtype">
+               <option>{{ foiteam.FOODTYPE }}</option>
+               {% for i in Fdata %}
+               <option>{{ i.FNAME }}</option>
+               {% endfor %}
+             </select>
+           </div>
+           <div class="form-group">
+            <label for="foodname">food name"</label>
+            <input type="text" class="form-control" id="foodname" placeholder="foodname" name="foodname" value="{{ foiteam.FONAME }}">
+          </div>
+          <div class="form-group">
+            <label for="fprice">PRICE</label>
+            <input type="text" class="form-control" id="fprice" placeholder="Per night" name="fprice" value="{{ foiteam.FOPRICE }}">
+          </div>
+          <div class="form-group">
+            <label for="fimage">Upload image</label>
+              <img src="{{ foiteam.FOIMAGE.url }}" height="200px" width="100px">
+            <input type="file" class="form-control" id="fimage" placeholder="Upload image" name="fimage">
+          </div>
+
+          <div class="form-group">
+            <label for="fdescription">View</label>
+            <input type="text" class="form-control" id="fdescription" placeholder="Views" name="fdescription" value="{{ foiteam.FODESCRIPTION }}">
+          </div>
+          <button type="submit" class="btn btn-primary me-2">Submit</button>
+          <button class="btn btn-light">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+{% endblock %}

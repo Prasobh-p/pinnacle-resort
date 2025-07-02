@@ -1,0 +1,40 @@
+<!doctype html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Our Rooms</title>
+</head>
+<body>
+
+  <div class="col-md-6 grid-margin stretch-card" style="margin-left:200px">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-t2itle">Add rooms</h4>
+        <form class="forms-sample" method="POST" action="{% url 'save_accommodationpage' %}" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="exampleInputUsername1">Room type</label>
+            <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Room type" name="Ana">
+          </div>
+          <div class="form-group">
+            <label for="ImageFiled">Upload image</label>
+            <input type="file" class="form-control" id="ImageFiled" placeholder="Upload image" name="Aimage">
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" name="Adescription" id="description" rows="5" cols="45"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary me-2">Submit</button>
+          <button class="btn btn-light">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,46 @@
+<!doctype html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Our Rooms</title>
+</head>
+<body>
+
+  <div class="col-md-6 grid-margin stretch-card" style="margin-left:200px">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Add Foods</h4>
+        <form class="forms-sample" method="POST" action="{% url 'updatefooddata' fooid=Fdata.id %}" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          <div class="form-group">
+            <label for="Fna">Room type</label>
+            <input type="text" class="form-control" id="Fna" placeholder="Room type" name="Fna" value="{{ Fdata.FNAME }}">
+          </div>
+
+          <div class="form-group">
+            <label for="Fimage">Upload image</label>
+            <img src="{{ Fdata.FIMAGE.url }}" height="100px" width="100px">
+            <input type="file" class="form-control" id="Fimage" placeholder="Upload image" name="Fimage">
+          </div>
+
+          <div class="form-group">
+            <label for="Fdescription">POOL </label>
+            <textarea name="Fdescription" id="Fdescription" rows="5" cols="45"  > {{ Fdata.FDESCRIPTION }} </textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary me-2">Update</button>
+          <button class="btn btn-light">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+{% endblock %}

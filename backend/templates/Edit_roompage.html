@@ -1,0 +1,67 @@
+<!doctype html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+  <div class="col-md-6 grid-margin stretch-card" style="margin-left:200px">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Edit room</h4>
+        <form class="forms-sample" method="POST" action="{% url 'update_roompage'  Rid=iteam.id %}" enctype="multipart/form-data">
+          {% csrf_token %}
+           <div class="form-group">
+             <label for="Roomtype">Roomtype</label>
+             <select class="form-select" id="Roomtype" name="Roomtype">
+               <option>{{ iteam.ROOMTYPE }}</option>
+               {% for i in data %}
+               <option>{{ i.NAME }}</option>
+               {% endfor %}
+             </select>
+           </div>
+           <div class="form-group">
+            <label for="Roomname">Room name</label>
+            <input type="text" class="form-control" id="Roomname" placeholder="Room type" name="Roomname" value="{{ iteam.NAME }}">
+          </div>
+          <div class="form-group">
+            <label for="Rprice">Per night</label>
+            <input type="text" class="form-control" id="Rprice" placeholder="Per night" name="Rprice" value="{{ iteam.PRICE }}">
+          </div>
+          <div class="form-group">
+            <label for="Rimage">Upload image</label>
+              <img src="{{ iteam.IMAGE.url }}" height="200px" width="100px">
+            <input type="file" class="form-control" id="Rimage" placeholder="Upload image" name="Rimage">
+          </div>
+          <div class="form-group">
+            <label for="Rbe">Bedding</label>
+            <input type="text" class="form-control" id="Rbe" placeholder="Bedding" name="Rbed" value="{{ iteam.BEDDING }}">
+          </div>
+          <div class="form-group">
+            <label for="Rpoo">Pool</label>
+            <input type="text" class="form-control" id="Rpoo" placeholder="Pool" name="Rpool" value="{{ iteam.POOL }}">
+          </div>
+          <div class="form-group">
+            <label for="Rvie">View</label>
+            <input type="text" class="form-control" id="Rvie" placeholder="Views" name="Rview" value="{{ iteam.VIEWS }}">
+          </div>
+          <div class="form-group">
+            <label for="description">Amenities</label>
+            <textarea class="form-control" name="Rame" id="description" rows="5" cols="45">{{ iteam.AMENITIES }}</textarea>
+          </div>
+          <button type="submit" class="btn btn-primary me-2">Submit</button>
+          <button class="btn btn-light">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+{% endblock %}
