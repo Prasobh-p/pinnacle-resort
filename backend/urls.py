@@ -1,6 +1,7 @@
 from django.urls import path
 from backend import views
 
+
 urlpatterns = [
     path('index/', views.indexpage, name="indexpage"),
     path('add_accommodation/', views.add_accommodationpage, name="add_accommodationpage"),
