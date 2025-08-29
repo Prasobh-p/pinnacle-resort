@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
+from decouple import config    # ← ADD THIS LINE
+import dj_database_url         # ← ADD THIS LINE
+
 
 from django.forms import Media
 
@@ -21,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8_btfqk+xyl787jhn2j3y%o=-j0!z1=@l)n*ba+u*43t9s26nv'
+SECRET_KEY = config('SECRET_KEY', default='django-insecure-8_btfqk+xyl787jhn2j3y%o=-j0!z1=@l)n*ba+u*43t9s26nv')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
 
