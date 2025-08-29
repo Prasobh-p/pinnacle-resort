@@ -20,7 +20,6 @@ from django.views.generic import RedirectView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns, static
 from Pinnacle import settings
 
-
 import backend.urls
 import pinnacleinn.urls
 
