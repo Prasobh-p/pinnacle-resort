@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<div class="card body">
+    <h4>PINNACLE</h4>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>IMAGE</th>
+                    <th>FOODNAME</th>
+                    <th>PRICE</th>
+                    <th>DESCRIPTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in foods %}
+                <tr>
+                    <td>
+                            <img src="{{ i.FOIMAGE.url }}" style="height:80px;width:100px" alt="Food Image">
+                    </td>
+                    <td>{{ i.FONAME }}</td>
+                    <td>{{ i.FOPRICE }}</td>
+                    <td>{{ i.FODESCRIPTION }}</td>
+                    <td>
+                        <a href="{% url 'edit_foodpage' Bid=i.id %}">
+                            <button class="btn btn-primary me-2">Edit</button>
+                        </a>
+                        <a href="{% url 'delete_foodpage' Bid=i.id %}">
+                            <button class="btn btn-primary me-2">Delete</button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

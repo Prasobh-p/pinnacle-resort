@@ -1,0 +1,55 @@
+<!doctype html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+  <div class="col-md-6 grid-margin stretch-card" style="margin-left:200px">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Add rooms</h4>
+        <form class="forms-sample" method="POST" action="{% url 'save_fooditeams' %}" enctype="multipart/form-data">
+          {% csrf_token %}
+           <div class="form-group">
+             <label for="foodtype">Foodtype</label>
+             <select class="form-select" name="foodtype">
+               <option>select</option>
+               {% for i in Fdata %}
+               <option>{{ i.FNAME }}</option>
+               {% endfor %}
+             </select>
+           </div>
+           <div class="form-group">
+            <label for="foodname">Food name</label>
+            <input type="text" class="form-control" id="foodname" placeholder="food type" name="foodname">
+          </div>
+          <div class="form-group">
+            <label for="foodprice">foodprice</label>
+            <input type="text" class="form-control" id="foodprice" placeholder="foodprice" name="foodprice">
+          </div>
+          <div class="form-group">
+            <label for="foodimage">Foodimage</label>
+            <input type="file" class="form-control" id="foodimage" placeholder="Upload image" name="foodimage">
+          </div>
+          <div class="form-group">
+            <label for="fdescription">Description</label>
+            <input type="text" class="form-control" id="fdescription" placeholder="Description" name="fdescription">
+          </div>
+
+          <button type="submit" class="btn btn-primary me-2">Submit</button>
+          <button class="btn btn-light">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+{% endblock %}

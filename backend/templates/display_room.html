@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<div class="card body">
+    <h4>PINNACLE</h4>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ROOMNAME</th>
+                    <th>NAME</th>
+                    <th>PRICE</th>
+                    <th>IMAGE</th>
+                    <th>BEDDING</th>
+                    <th>VIEW</th>
+                    <th>POOL</th>
+                    <th>Amenities</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in iteam %}
+                <tr>
+                    <td>{{i.ROOMTYPE}}</td>
+                    <td>{{ i.NAME }}</td>
+                    <td>{{i.PRICE}}</td>
+                    <td>
+                        <img src="{{ i.IMAGE.url }}" style="height:80px;width:100px" alt="Room Image">
+                    </td>
+                    <td>{{ i.BEDDING }}</td>>
+                    <td>{{ i.VIEWS }}</td>
+                    <td>{{ i.POOL }}</td>
+                    <td>{{ i.AMENITIES }}</td>
+                    <td>
+                        <a href="{% url 'edit_roompage' Rid=i.id %}">
+                            <button class="btn btn-primary me-2">Edit</button>
+                        </a>
+                        <a href="{% url 'delete_roompage' Rid=i.id %}">
+                            <button class="btn btn-primary me-2">Delete</button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

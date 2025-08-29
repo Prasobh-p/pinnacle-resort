@@ -1,0 +1,31 @@
+﻿# Set the default behavior for all files
+* text=auto
+
+# Explicitly declare text files you want to always be normalized and converted
+*.css text
+*.js text
+*.html text
+*.svg text
+*.md text
+*.json text
+*.scss text
+*.less text
+*.txt text
+*.xml text
+*.yml text
+*.yaml text
+
+# Denote all files that are truly binary and should not be modified
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.pdf binary
+*.zip binary
+*.jar binary
+*.war binary

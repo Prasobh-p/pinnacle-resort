@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="cont">
+  <div class="form sign-up">
+    <h2>Sign Up</h2>
+    <form method="POST" name="myform" action="{% url 'userlogin' %}" enctype="multipart/form-data"  onsubmit="return validate_function()" >
+      {% csrf_token %}
+      <label>
+        <span>Name</span>
+        <input type="text" name="username" id="username" >
+      </label>
+      <label>
+        <span>Email</span>
+        <input type="email" name="EMAIL" id="EMAIL">
+      </label>
+      <label>
+        <span>Password</span>
+        <input type="password" name="password" id="password">
+      </label>
+      <label>
+        <span>Confirm Password</span>
+        <input type="password" name="confirmpassword" id="confirmpassword">
+      </label>
+      <button type="submit" class="submit">Sign Up Now</button>
+      <div>
+            <div class="create-account">
+            <p>Don't have an account? <a id="create-account-btn" href="{% url 'loginpage' %}">Click here</a></p>
+        </div>
+    </div>
+    </form>
+  </div>
+</div>
+<script>
+ function validate_function(){
+    var name = document.getElementById("username").value.trim();
+    var email =document.getElementById("EMAIL").value.trim();
+    var password = document.getElementById("password").value;
+    var confirmPassword = document.getElementById("confirmpassword").value;
+
+  if(name== ""|| name== null){
+     swal("invalid name", "", "error")
+     return false;
+  }
+  else if(email== ""|| email== null){
+      swal("Check Email properly", "", "error")
+      return false;
+  }
+  else if(password== ""|| password==null){
+     swal("Check the password properly", "", "error")
+     return false;
+  }
+  else if (password.length <8){
+      swal("Password must be at least 8 characters", "", "error");
+  return false;
+  }
+   else if (confirmPassword.length<8){
+     swal("Confirm password must be at least 8 characters", "", "warning");
+     return false;
+   }
+   else if (password !== confirmPassword) {
+     swal("Passwords do not match", "", "error");
+    return false;
+   }
+   else{
+    return true
+   }
+}
+
+</script>
+  <style>
+
+
+    *, *:before, *:after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    body {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #c9def0;
+    }
+
+    .cont {
+      width: 400px;
+      padding: 40px;
+      background: white;
+      box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+      border-radius: 15px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 28px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+
+    label span {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #505f75;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      font-size: 16px;
+      padding: 8px 10px;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+      background: #f7f7f7;
+    }
+
+    .submit {
+      margin-top: 30px;
+      width: 100%;
+      padding: 10px;
+      border-radius: 25px;
+      background: #555;
+      color: #fff;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .submit:hover {
+      background: #000;
+    }
+  </style>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+{% if messages %}
+  {% for i in messages %}
+    {% if i.tags == 'warning' %}
+      <script>
+        swal('{{ i }}', '', 'warning');
+      </script>
+    {% elif i.tags == 'error' %}  {# Corrected Typo #}
+      <script>
+        swal('{{ i }}', '', 'error');
+      </script>
+    {% elif i.tags == 'info' %}
+      <script>
+        swal('{{ i }}', '', 'info');
+      </script>
+    {% elif i.tags == 'success' %}
+      <script>
+        swal('{{ i }}', '', 'success');
+      </script>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+</body>
+</html>
