@@ -19,7 +19,7 @@ import razorpay
 
 def Homepage(req):
     Adata = Accomdb.objects.all()
-    return render(req, "pinnacleinn/HOME.html", {'Adata': Adata})
+    return render(req, "pinnacleinn/Home.html", {'Adata': Adata})
 
 def Aboutpage(req):
     return render(req,"About.html")
